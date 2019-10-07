@@ -1,46 +1,34 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.Screens.Screen1;
 
-public class MyGdxGame extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
-	float X;
-	float Y;
+public class MyGdxGame extends Game {
+
+	public SpriteBatch batch;
+
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+        this.setScreen(new Screen1(this));
 	}
 
 	@Override
 	public void render () {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+	    super.render();
 
-		if(Gdx.input.isKeyPressed(Input.Keys.UP))
-		{
-			Y = Y + 4;
-		}
-		else if(Gdx.input.isKeyPressed(Input.Keys.DOWN))
-		{
-			Y = Y - 4;
-		}
 
-		batch.begin();
-		batch.draw(img, X, Y);
-		batch.end();
 	}
 	
 	@Override
 	public void dispose () {
 		batch.dispose();
-		img.dispose();
 	}
 }

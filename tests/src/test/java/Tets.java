@@ -9,4 +9,9 @@ public class Tets {
     {
         assertTrue(true);
     }
+    @Test
+    public void Test2()
+    {
+        assertTrue(false);
+    }
 }

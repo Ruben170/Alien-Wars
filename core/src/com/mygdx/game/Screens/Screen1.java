@@ -6,6 +6,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.mygdx.game.Bullet;
+import com.mygdx.game.CollisionRect;
 import com.mygdx.game.MyGdxGame;
 
 import java.util.ArrayList;
@@ -15,8 +16,11 @@ public class Screen1 implements Screen {
     public static final int SPEED = 120;
 
     Texture img;
+    Texture trashcan;
+    Texture fonties;
     float X;
     float Y;
+    CollisionRect trashrect;
 
     MyGdxGame game;
 
@@ -26,11 +30,14 @@ public class Screen1 implements Screen {
     {
         this.game = game;
         bullets = new ArrayList<>();
+        trashrect = new CollisionRect(1150, 10, 220, 350);
     }
 
     @Override
     public void show() {
         img = new Texture("badlogic.jpg");
+        trashcan = new Texture("Trashcan.png");
+        fonties = new Texture("Fonties icon.png");
     }
 
     @Override
@@ -53,13 +60,22 @@ public class Screen1 implements Screen {
             }
         }
 
+        for (Bullet bullet: bullets) {
+            if(bullet.getCollisionRect().collidesWith(trashrect))
+            {
+                bulletToRemove.add(bullet);
+            }
+        }
+
         bullets.removeAll(bulletToRemove);
 
-        Gdx.gl.glClearColor(1, 0, 0, 1);
+        Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         game.batch.begin();
 
+        game.batch.draw(trashcan, 1150, 10, 220, 400);
+        game.batch.draw(fonties, 1500, 900, 300, 150);
         for (Bullet bullet: bullets) {
             bullet.render(game.batch);
         }

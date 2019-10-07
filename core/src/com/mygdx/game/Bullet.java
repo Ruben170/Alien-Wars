@@ -29,7 +29,6 @@ public class Bullet {
 
     public void update(float deltaTime){
         x+= SPEED * deltaTime;
-        y = world.
         if(y > Gdx.graphics.getHeight() || x > Gdx.graphics.getWidth())
         {
             remove = true;

@@ -21,7 +21,6 @@ public class Bullet {
         this.x = x;
         this.y = y;
         world = new World(new Vector2(0, -9.81f), true);
-        world.createBody();
         if(texture == null)
         {
             texture = new Texture("Tennis-Ball.png");

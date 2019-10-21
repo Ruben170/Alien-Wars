@@ -3,6 +3,13 @@ install: true
 
 jdk: oraclejdk11
 
+addons:
+  sonarcloud:
+    organization: "sonarcloud_organization_key" # the key of the org you chose at step #3
+    token:
+      secure: "22ea24cc0e47ff3e2d47d1b3a975774ed6d0ce01&t" # encrypted value of your token
+
 script:
   #- ./gradlew build --scan -s
   - ./gradlew clean test
+  - sonar-scanner
